@@ -15,7 +15,7 @@ namespace Usuarios_Dapper
             var dbConnectionString = new ConexionDB(Configuration.GetConnectionString("testing"));
             services.AddSingleton(dbConnectionString);
             services.AddSingleton<IUsuariosSQL, UsuariosSQL>();
-
+            services.AddSingleton<IClaimcitoSQL, ClaimcitoSQL>();
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();

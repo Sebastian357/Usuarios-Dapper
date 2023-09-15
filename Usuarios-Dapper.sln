@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Usuarios-Dapper", "Usuarios-Dapper\Usuarios-Dapper.csproj", "{25A7E37D-CF41-4216-AA7C-05B7FB8C75CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Usuarios-Dapper", "Usuarios-Dapper\Usuarios-Dapper.csproj", "{25A7E37D-CF41-4216-AA7C-05B7FB8C75CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CF87CFF8-640D-4DA4-807E-A60DE4B59773}"
+	ProjectSection(SolutionItems) = preProject
+		XHacer.txt = XHacer.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

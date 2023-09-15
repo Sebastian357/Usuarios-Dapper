@@ -9,6 +9,7 @@ namespace Usuarios_Dapper.Controllers
 {
     [ApiController]
     [Route("api/usuarios")]
+    
     public class UsuariosController : ControllerBase
     {
         private readonly IUsuariosSQL _usuariosSQL;
@@ -17,35 +18,47 @@ namespace Usuarios_Dapper.Controllers
         public UsuariosController(IUsuariosSQL usuariosSQL)
         {
             _usuariosSQL = usuariosSQL;
-
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Usuario>>> GetTodo()
         {
             var resultado = await _usuariosSQL.SelectTodos();
+            if (resultado == null)
+            {
+                return BadRequest();
+            }
             return resultado;
         }
 
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] Usuario usuario)
         {
-            await _usuariosSQL.Insert(usuario);
-            return Ok();
+            if (await _usuariosSQL.Insert(usuario))
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
 
         [HttpDelete("{email}")]
         public async Task<ActionResult> Delete(string email)
         {
-            await _usuariosSQL.Delete(email);
-            return Ok();
+           if ( await _usuariosSQL.Delete(email))
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
 
         [HttpPut("{email}")]
         public async Task <ActionResult> Put(string email, [FromBody] Usuario usuario)
         {
-            await _usuariosSQL.Update(email, usuario);
-            return Ok();
+            if (await _usuariosSQL.Update(email, usuario))
+            {
+                return Ok();//
+            }
+            return BadRequest();
         }
     }
 }

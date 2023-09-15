@@ -1,0 +1,11 @@
+29/10/2022
+ver la interfaz IUsuariosSQL y la de claims IClaimcitoSQL
+unificar e inyectar a las clases los metodos que son distintos
+
+hacer jwt
+
+hacer  test unitarios
+
+hacer cliente front
+
+hacer xamarin app

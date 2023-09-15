@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Text.RegularExpressions;
 using Usuarios_Dapper.Modelos;
 
 namespace Usuarios_Dapper.DBOperaciones
@@ -14,7 +15,28 @@ namespace Usuarios_Dapper.DBOperaciones
             stringConnectionDB = pconexionDB.stringConnectionDB;
         }
 
-        public async Task Delete(string email)
+        public async Task <bool> ExisteUsuario (string email)
+        {
+            try
+            {
+                var conexionDB= new SqlConnection(stringConnectionDB);
+                var resultado=conexionDB.QueryFirstAsync(email);
+                if (resultado==null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine (ex.Message);
+                return false;
+            }
+        }
+        public async Task <bool> Delete(string email)
         {
             try
             {
@@ -25,14 +47,16 @@ namespace Usuarios_Dapper.DBOperaciones
                     email = email,
                 };
                 await conexioDB.QueryAsync(procedure, values, commandType: CommandType.StoredProcedure);
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                return false;
             }
         }
 
-        public async Task Insert(Usuario usuario)
+        public async Task <bool> Insert(Usuario usuario)
         {
             try
             {
@@ -48,10 +72,12 @@ namespace Usuarios_Dapper.DBOperaciones
                     rol = usuario.rol
                 };
                 await conexioDB.QueryAsync(procedure, values, commandType: CommandType.StoredProcedure);
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                return false;
             }
         }
 
@@ -62,7 +88,7 @@ namespace Usuarios_Dapper.DBOperaciones
             return usuarios;
         }
 
-        public async Task Update(string email, Usuario usuario)
+        public async Task <bool> Update(string email, Usuario usuario)
         {
             try
             {
@@ -78,10 +104,12 @@ namespace Usuarios_Dapper.DBOperaciones
                     rol = usuario.rol
                 };
                 await conexioDB.QueryAsync(procedure, values, commandType: CommandType.StoredProcedure);
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                return false;
             }
         }
     }
