@@ -4,8 +4,8 @@ unificar e inyectar a las clases los metodos que son distintos
 
 hacer jwt
 
-hacer  test unitarios
+hacer  test unitarios-integracion
 
-hacer cliente front
+hacer cliente front react
 
 hacer xamarin app

@@ -20,7 +20,7 @@ namespace Usuarios_Dapper.DBOperaciones
             try
             {
                 var conexionDB= new SqlConnection(stringConnectionDB);
-                var resultado=conexionDB.QueryFirstAsync(email);
+                var resultado= await conexionDB.QueryFirstAsync(email);
                 if (resultado==null)
                 {
                     return false;

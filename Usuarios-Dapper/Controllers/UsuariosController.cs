@@ -26,7 +26,7 @@ namespace Usuarios_Dapper.Controllers
             var resultado = await _usuariosSQL.SelectTodos();
             if (resultado == null)
             {
-                return BadRequest();
+                return NoContent();
             }
             return resultado;
         }
